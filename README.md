@@ -4,7 +4,7 @@
 
 Wallet sign in functionality is automated (UI level) using the following framework and tools:
    Selenium Webdriver with JUnit5 + Java (Maven project)
-   IDE - Intellij Idea
+   IDE - IntelliJ IDEA
    
    All the test cases are included in the WalletLoginTest class and the relevant steps and methods have implemented using the page object model. 
    
