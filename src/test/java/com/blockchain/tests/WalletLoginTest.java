@@ -21,7 +21,7 @@ public class WalletLoginTest extends SignInSteps {
         navigate_to_wallet_login();
         enter_username_to_signIn(email);
         enter_password_to_signIn(password);
-        user_is_on_the_wallet_signIn_page();
+        user_is_on_the_wallet_home_page();
     }
 
     @ParameterizedTest
@@ -39,13 +39,20 @@ public class WalletLoginTest extends SignInSteps {
         user_can_see_an_error_in_the_email_textField(errorMessage);
     }
 
-    @Test
+    @ParameterizedTest
+    @CsvSource({
+            "dfddfdfs&%%$&,                                       Wrong password. Do you want to recover your wallet using Secret Private Key Recovery Phrase?",
+            "13        ,                                          Wrong password. Do you want to recover your wallet using Secret Private Key Recovery Phrase?",
+             "'    ',                                             Required",
+            "dfhdajhWWWWfjhdlkfhdklfh5362$£$!@$fldhfl@fgdsgds,    Wrong password. Do you want to recover your wallet using Secret Private Key Recovery Phrase?",
+            "gdjs,                                                Wrong password. Do you want to recover your wallet using Secret Private Key Recovery Phrase?"
+    })
     @DisplayName("A user should not be able to login with invalid password and see an error message")
-    void walletSignInWithValidUsernameAndInvalidPassword() {
+    void walletSignInWithValidUsernameAndInvalidPassword(String password, String errorMessage) {
         navigate_to_wallet_login();
         enter_username_to_signIn("deep.crpto.test@gmail.com");
-        enter_password_to_signIn("wewewe");
-        user_can_see_an_error_in_the_password_textField();
+        enter_password_to_signIn(password);
+        user_can_see_an_error_in_the_password_textField(errorMessage);
     }
 
     @Test
@@ -70,7 +77,7 @@ public class WalletLoginTest extends SignInSteps {
         navigate_to_wallet_login();
         enter_username_to_signIn("deepthicrypto22@gmail.com");
         navigates_back_to_emailScreen_from_passwordScreen();
-        user_is_on_the_wallet_signIn_page();
+        user_is_on_the_wallet_home_page();
     }
 
 }

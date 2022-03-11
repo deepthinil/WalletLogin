@@ -33,7 +33,7 @@ public class WalletSignInPage extends BasePage {
     WebElement txtInvalidEmailError;
 
     @FindBy(xpath = "//*[@data-e2e='requiredMessage']")
-    WebElement txtEmailRequiredError;
+    WebElement txtEmailOrPasswordRequiredError;
 
     @FindBy(xpath = "//*[@data-e2e='toastMessage']")
     WebElement emailDoesNotExistErrorMessage;
@@ -45,9 +45,10 @@ public class WalletSignInPage extends BasePage {
     WebElement signUpLink;
 
     Map<String, WebElement> errorMap = new HashMap<String, WebElement>() {{
-        put("Required", txtEmailRequiredError);
+        put("Required", txtEmailOrPasswordRequiredError);
         put("Invalid Wallet ID or Email", txtInvalidEmailError);
         put("Error sending verification email. Please try again.", emailDoesNotExistErrorMessage);
+        put("Wrong password. Do you want to recover your wallet using Secret Private Key Recovery Phrase?", txtInvalidPasswordError);
     }};
 
 
@@ -56,12 +57,11 @@ public class WalletSignInPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public WalletSignInPage exists() {
+    public void exists() {
         waitForVisibility(txtEmail);
         Assert.assertTrue(txtEmail.isDisplayed());
         Assert.assertTrue(btnLogin.isDisplayed());
         Assert.assertTrue(loginHelpLink.isDisplayed());
-        return this;
     }
 
     public void enter_username_and_continue(String userName) {
@@ -88,9 +88,10 @@ public class WalletSignInPage extends BasePage {
         Assert.assertTrue(errorMap.get(errorMessage).isDisplayed());
     }
 
-    public void error_message_displayed_on_password_textField() {
+    public void error_message_displayed_on_password_textField(String errorMessage) {
         Assert.assertFalse(btnPassword.isEnabled());
-        Assert.assertTrue(txtInvalidPasswordError.isDisplayed());
+        waitForVisibility(errorMap.get(errorMessage));
+        Assert.assertTrue(errorMap.get(errorMessage).isDisplayed());
     }
 
     public void choose_need_some_help_link_from_loginPage() {

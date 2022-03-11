@@ -20,11 +20,10 @@ public class HelpPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public HelpPage exists() {
+    public void exists() {
         waitForVisibility(btnHelpBack);
         Assert.assertTrue(btnHelpBack.isDisplayed());
         Assert.assertTrue(forgotPasswordLink.isDisplayed());
-        return this;
     }
 
 }

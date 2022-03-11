@@ -81,7 +81,7 @@ public class DriverManager {
             driver = new SafariDriver();
 
         } else {
-            throw new UnsupportedBrowserException("Test run only support browser modes Chrome or Firefox");
+            throw new UnsupportedBrowserException("Test run only support browser modes Chrome or Firefox or Safari");
         }
     }
 

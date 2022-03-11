@@ -45,11 +45,10 @@ public class SignupPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public SignupPage exists() {
+    public void exists() {
         waitForVisibility(btnCreateWallet);
         Assert.assertTrue(btnCreateWallet.isDisplayed());
         Assert.assertTrue(btnCreateExchange.isDisplayed());
-        return this;
     }
 
     public void chooseCreateWalletAccountOption() {
@@ -57,7 +56,7 @@ public class SignupPage extends BasePage {
         btnCreateWallet.click();
     }
 
-    public SignupPage createNewWalletAccount(String email, String password) {
+    public void createNewWalletAccount(String email, String password) {
         waitForVisibility(txtEmail);
         txtEmail.clear();
         txtEmail.sendKeys(email);
@@ -69,7 +68,6 @@ public class SignupPage extends BasePage {
         unitedKingdomAsCountry.click();
         checkboxTAndC.click();
         btnSignup.click();
-        return this;
     }
 
     public void chooseVerifyEmailLaterOption() {

@@ -37,12 +37,11 @@ public class WalletHomePage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public WalletHomePage exists() {
+    public void exists() {
         waitForVisibility(pageHome);
         Assert.assertTrue(pageHome.isDisplayed());
         Assert.assertTrue(btnSend.isDisplayed());
         Assert.assertTrue(btnReceive.isDisplayed());
-        return this;
     }
 
     public void signOutFromTheAccount() {

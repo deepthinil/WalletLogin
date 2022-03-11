@@ -31,7 +31,10 @@ public class SignInSteps extends DriverManager {
     }
 
     public void enter_username_to_signIn(String userName) {
-        walletSignInPage.enter_username_and_continue(userName);
+        try {
+            walletSignInPage.enter_username_and_continue(userName);
+        }
+        catch (Exception ex) {}
     }
 
     public void navigates_back_to_emailScreen_from_passwordScreen() {
@@ -46,11 +49,11 @@ public class SignInSteps extends DriverManager {
         walletSignInPage.enter_password_and_continue(password);
     }
 
-    public void user_can_see_an_error_in_the_password_textField() {
-        walletSignInPage.error_message_displayed_on_password_textField();
+    public void user_can_see_an_error_in_the_password_textField(String errorMessage) {
+        walletSignInPage.error_message_displayed_on_password_textField(errorMessage);
     }
 
-    public void user_is_on_the_wallet_signIn_page() {
+    public void user_is_on_the_wallet_home_page() {
         walletHomePage.exists();
     }
 
